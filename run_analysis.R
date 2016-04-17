@@ -27,7 +27,7 @@ library(dplyr)
 library(reshape2)
 
 print("Reading data.")
-# Read measurement data
+# Read feature and measurement data
 featuresDF <- read.table("./UCI HAR Dataset/features.txt", col.names = c("ID", "FeatureName"))
 trainDF <- read.table("./UCI HAR Dataset/train/X_train.txt", col.names = featuresDF$FeatureName)
 testDF <- read.table("./UCI HAR Dataset/test/X_test.txt", col.names = featuresDF$FeatureName)
@@ -65,7 +65,7 @@ newColNames <- sub("^t", "Time", newColNames)
 newColNames <- sub("^f", "Frequency", newColNames)
 newColNames <- sub("mean", "Mean", newColNames)
 newColNames <- sub("\\.std", "\\.STDEV", newColNames)
-newColNames <- sub("Acc\\.", "Acceleration\\.", newColNames)
+newColNames <- sub("Acc", "Acceleration", newColNames)
 
 # Set new column names
 setnames(meanStdDF, colnames(meanStdDF), newColNames)
